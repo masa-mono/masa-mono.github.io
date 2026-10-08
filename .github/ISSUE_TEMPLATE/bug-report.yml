@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a problem with the published site
+title: "Bug: "
+body:
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      placeholder: https://masa-mono.github.io/ja/
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include steps to reproduce and the expected result. Do not paste private information.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser and device
+      placeholder: Browser version, operating system, and screen size
