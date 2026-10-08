@@ -1,0 +1,25 @@
+name: Content proposal
+description: Suggest a public article or page improvement
+title: "Content: "
+body:
+  - type: textarea
+    id: audience
+    attributes:
+      label: Audience and question
+      description: Who is this for, and what should it answer?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed content
+      description: Give an outline and public sources. Do not include confidential information.
+    validations:
+      required: true
+  - type: checkboxes
+    id: languages
+    attributes:
+      label: Language plan
+      options:
+        - label: I have considered both Japanese and English versions.
+          required: true
