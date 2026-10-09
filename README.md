@@ -4,25 +4,24 @@ This repository is intended for the personal technical site at `https://masa-mon
 
 ## Current state
 
-The repository currently contains the operating foundation only. The Astro application and its `dev`, `build`, and `preview` scripts are planned for the next implementation step. There is no site to start or build yet.
+The Astro application builds a static site with temporary Japanese and English entry pages. Editorial pages and the publication workflow are separate follow-up work. GitHub Pages is currently unpublished.
 
 ## Local development
 
-After the Astro application is added:
+1. Install the Node.js version in `.nvmrc` (Node.js 24 LTS) and check `node --version`.
+2. Run `npm ci` to install exactly the dependencies in `package-lock.json`.
+3. Run `npm run dev` and open the local URL printed in the terminal.
+4. Run `npm run build` before opening a pull request. This generates the production site in `dist/`.
+5. Run `npm run preview` to inspect the production build locally.
 
-1. Install the Node.js version specified by the application's version file and check `node --version`.
-2. Install dependencies with the package manager and lockfile committed by that application. Do not mix package managers.
-3. Run the application's `dev` script and open the URL printed in the terminal.
-4. Run its `build` script before opening a pull request. Use `preview` to inspect the built site.
-
-The exact commands will be added here with the Astro application. Until then, do not treat a successful local file preview as a production build.
+The Astro `site` setting is `https://masa-mono.github.io/`, with root `base: '/'`, matching this user's GitHub Pages repository. Building locally does not publish the site.
 
 ## Change and review flow
 
 1. Create a branch from the current `main`: `feature/<topic>` for site features, `content/<topic>` for writing, or `fix/<topic>` for corrections. Use lowercase words separated by hyphens.
 2. Make one coherent change per branch. Keep credentials, local environment files, private information, and unlicensed material out of commits.
 3. Check both Japanese and English versions of any changed content. Verify public claims, links, keyboard access, and image descriptions where relevant.
-4. Run the checks documented by the application once they exist. Open a pull request using the template and record the checks actually performed.
+4. Run `npm ci` and `npm run build`. Open a pull request using the template and record the checks actually performed.
 5. Merge into `main` only after review and passing required checks. The Pages deployment workflow is planned for the CI and publication steps; this repository does not deploy yet.
 
 ## Recovery

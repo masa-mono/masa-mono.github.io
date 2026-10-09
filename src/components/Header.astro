@@ -1,0 +1,14 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  lang: 'ja' | 'en';
+}
+
+const { lang } = Astro.props;
+---
+
+<header>
+  <a href="/">Masahiro Ono</a>
+  <LanguageSwitcher lang={lang} />
+</header>
