@@ -5,11 +5,12 @@ interface Props {
   title: string;
   description: string;
   lang: 'ja' | 'en';
+  alternates: { ja: string; en: string };
 }
 
-const { title, description, lang } = Astro.props;
+const { title, description, lang, alternates } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} lang={lang}>
+<BaseLayout title={title} description={description} lang={lang} alternates={alternates}>
   <article><slot /></article>
 </BaseLayout>

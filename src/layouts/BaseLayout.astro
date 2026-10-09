@@ -8,18 +8,19 @@ interface Props {
   title: string;
   description: string;
   lang: 'ja' | 'en';
+  alternates: { ja: string; en: string };
 }
 
-const { title, description, lang } = Astro.props;
+const { title, description, lang, alternates } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={lang}>
   <head>
-    <Seo title={title} description={description} />
+    <Seo title={title} description={description} alternates={alternates} />
   </head>
   <body>
-    <Header lang={lang} />
+    <Header lang={lang} alternates={alternates} />
     <main><slot /></main>
     <Footer />
   </body>

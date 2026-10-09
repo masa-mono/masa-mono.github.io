@@ -6,6 +6,12 @@ This repository is intended for the personal technical site at `https://masa-mon
 
 The Astro application builds a static site with temporary Japanese and English entry pages. Editorial pages and the publication workflow are separate follow-up work. GitHub Pages is currently unpublished.
 
+## Bilingual content
+
+Fixed pages live in `src/content/pages/<locale>/` and articles in `src/content/insights/<locale>/`. Add a Markdown file for each language. Both files need the same `translationKey` and must provide `locale`, `slug`, `title`, `description`, `draft`, and `updatedAt` in frontmatter. `slug: home` is reserved for the home page; other fixed page slugs become `/<locale>/<slug>/`, while article slugs become `/<locale>/insights/<slug>/`.
+
+A build fails if a published page lacks a published translation, if a translation key is duplicated within a language, or if two entries produce the same URL. Draft-only content is omitted from generated pages. The language links and alternate metadata are derived from each published pair, so translated slugs can differ. Run `npm test` to check the pairing rules and `npm run build` to validate all content.
+
 ## Local development
 
 1. Install the Node.js version in `.nvmrc` (Node.js 24 LTS) and check `node --version`.
