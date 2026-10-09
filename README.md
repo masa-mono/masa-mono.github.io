@@ -4,7 +4,7 @@ This repository is intended for the personal technical site at `https://masa-mon
 
 ## Current state
 
-The Astro application builds a static site with temporary Japanese and English entry pages. Editorial pages and the publication workflow are separate follow-up work. GitHub Pages is currently unpublished.
+The Astro application builds a static site with temporary Japanese and English entry pages. Editorial pages are separate follow-up work. A successful push to `main` publishes the generated `dist/` directory through GitHub Actions.
 
 ## Local development
 
@@ -22,7 +22,7 @@ The Astro `site` setting is `https://masa-mono.github.io/`, with root `base: '/'
 2. Make one coherent change per branch. Keep credentials, local environment files, private information, and unlicensed material out of commits.
 3. Check both Japanese and English versions of any changed content. Verify public claims, links, keyboard access, and image descriptions where relevant.
 4. Run `npm ci` and `npm run build`. Open a pull request using the template and record the checks actually performed.
-5. Merge into `main` only after review and passing required checks. The Pages deployment workflow is planned for the CI and publication steps; this repository does not deploy yet.
+5. Merge into `main` only after review and passing required checks. The Build workflow runs for pull requests and pushes to `main`; only a push to `main` deploys `dist/` to GitHub Pages.
 
 ## Recovery
 
