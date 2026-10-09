@@ -1,8 +1,14 @@
 ---
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPagePairs } from '../../lib/content';
+import { alternateHrefs } from '../../lib/localized-content';
+
+const pair = (await getPagePairs()).find(({ ja }) => ja.data.translationKey === 'home');
+if (!pair) throw new Error('Missing published home translations');
+const { Content } = await render(pair.ja);
 ---
 
-<BaseLayout title="大野正博" description="大野正博の個人サイト。" lang="ja">
-  <h1>大野正博</h1>
-  <p>サイトを準備中です。</p>
+<BaseLayout title={pair.ja.data.title} description={pair.ja.data.description} lang="ja" alternates={alternateHrefs('pages', pair)}>
+  <Content />
 </BaseLayout>

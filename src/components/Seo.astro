@@ -2,13 +2,16 @@
 interface Props {
   title: string;
   description: string;
+  alternates: { ja: string; en: string };
 }
 
-const { title, description } = Astro.props;
+const { title, description, alternates } = Astro.props;
 ---
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="description" content={description} />
+<link rel="alternate" hreflang="ja" href={new URL(alternates.ja, Astro.site)} />
+<link rel="alternate" hreflang="en" href={new URL(alternates.en, Astro.site)} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <title>{title}</title>

@@ -1,0 +1,26 @@
+---
+import { render } from 'astro:content';
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { getInsightPairs, type InsightEntry } from '../../../lib/content';
+import { alternateHrefs, type TranslationPair } from '../../../lib/localized-content';
+
+export async function getStaticPaths() {
+  const pairs = await getInsightPairs();
+  return pairs.flatMap((pair) => (['ja', 'en'] as const).map((locale) => {
+    const entry = pair[locale];
+    return { params: { locale, slug: entry.data.slug }, props: { entry, pair } };
+  }));
+}
+
+interface Props {
+  entry: InsightEntry;
+  pair: TranslationPair<InsightEntry>;
+}
+
+const { entry, pair } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<ArticleLayout title={entry.data.title} description={entry.data.description} lang={entry.data.locale} alternates={alternateHrefs('insights', pair)}>
+  <Content />
+</ArticleLayout>

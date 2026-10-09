@@ -1,8 +1,14 @@
 ---
+import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPagePairs } from '../../lib/content';
+import { alternateHrefs } from '../../lib/localized-content';
+
+const pair = (await getPagePairs()).find(({ en }) => en.data.translationKey === 'home');
+if (!pair) throw new Error('Missing published home translations');
+const { Content } = await render(pair.en);
 ---
 
-<BaseLayout title="Masahiro Ono" description="Personal site of Masahiro Ono." lang="en">
-  <h1>Masahiro Ono</h1>
-  <p>Site under construction.</p>
+<BaseLayout title={pair.en.data.title} description={pair.en.data.description} lang="en" alternates={alternateHrefs('pages', pair)}>
+  <Content />
 </BaseLayout>

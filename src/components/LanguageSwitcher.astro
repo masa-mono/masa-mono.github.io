@@ -1,13 +1,14 @@
 ---
 interface Props {
   lang: 'ja' | 'en';
+  alternates: { ja: string; en: string };
 }
 
-const { lang } = Astro.props;
+const { lang, alternates } = Astro.props;
 const currentPath = Astro.url.pathname;
 ---
 
 <nav aria-label={lang === 'ja' ? '言語' : 'Language'}>
-  <a href="/ja/" lang="ja" aria-current={currentPath === '/ja/' ? 'page' : undefined}>日本語</a>
-  <a href="/en/" lang="en" aria-current={currentPath === '/en/' ? 'page' : undefined}>English</a>
+  <a href={alternates.ja} lang="ja" aria-current={currentPath === alternates.ja ? 'page' : undefined}>日本語</a>
+  <a href={alternates.en} lang="en" aria-current={currentPath === alternates.en ? 'page' : undefined}>English</a>
 </nav>

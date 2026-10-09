@@ -1,0 +1,27 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPagePairs, type PageEntry } from '../../lib/content';
+import { alternateHrefs, type TranslationPair } from '../../lib/localized-content';
+
+export async function getStaticPaths() {
+  const pairs = await getPagePairs();
+  return pairs.flatMap((pair) => (['ja', 'en'] as const).flatMap((locale) => {
+    const entry = pair[locale];
+    if (entry.data.slug === 'home') return [];
+    return [{ params: { locale, slug: entry.data.slug }, props: { entry, pair } }];
+  }));
+}
+
+interface Props {
+  entry: PageEntry;
+  pair: TranslationPair<PageEntry>;
+}
+
+const { entry, pair } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.description} lang={entry.data.locale} alternates={alternateHrefs('pages', pair)}>
+  <Content />
+</BaseLayout>
